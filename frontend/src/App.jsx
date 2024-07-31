@@ -2,8 +2,8 @@ import {useState} from 'react'
 import './App.css'
 import Home from "./components/Home/Home.jsx";
 import {Route, Routes} from "react-router-dom";
-import Student from "./components/LoginForm/student.jsx";
-import Teacher from "./components/LoginForm/teacher.jsx";
+import Student from "./components/LoginForm/student/student.jsx";
+import Teacher from "./components/LoginForm/teacher/teacher.jsx";
 import Registration from "./components/RegisterForm/registration.jsx";
 
 function App() {
