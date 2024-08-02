@@ -95,6 +95,37 @@ const deleteStudent = async (req, res) => {
     }
 }
 
+const updateAdmin = async (req, res) => {
+    try {
+        const updateAdmin = await adminModel.updateAdmin(req.body);
+        res.status(200).send(updateAdmin)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while updating the admin");
+    }
+}
+
+const updateTeacher = async (req, res) => {
+    try {
+        const updateTeacher = await adminModel.updateTeacher(req.body);
+        res.status(200).send(updateTeacher)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while updating the teacher");
+    }
+}
+
+const updateStudent = async (req, res) => {
+    try {
+        const updateStudent = await adminModel.updateStudent(req.body);
+        res.status(200).send(updateStudent)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while updating the student");
+    }
+}
+
+
 module.exports = {
     getAdmins,
     getTeachers,
@@ -104,5 +135,8 @@ module.exports = {
     addStudent,
     deleteAdmin,
     deleteTeacher,
-    deleteStudent
+    deleteStudent,
+    updateAdmin,
+    updateTeacher,
+    updateStudent
 }
