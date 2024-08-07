@@ -10,6 +10,14 @@ function Home () {
             alignItems: 'center',
             height: '100vh'
         }}>
+            <Link to="/admin">
+                <button style={{
+                    width: '200px',
+                    height: '50px',
+                    marginBottom: '10px',
+                    fontSize: '16px',
+                }}>ADMİN</button>
+            </Link>
             <Link to="/teacher">
                 <button style={{
                     width: '200px',

@@ -1,4 +1,25 @@
 const pool = require('../db');
+const bcrypt = require("bcrypt");
+
+const authenticateTeacher = async (email, password) => {
+    const result = await pool.query("SELECT * FROM teacher WHERE email = $1", [email]);
+    if (result.rows.length > 0) {
+        const user = result.rows[0];
+        const isMatch = await bcrypt.compare(password, user.password);
+        return isMatch ? user : null;
+    }
+    return null;
+};
+
+const getTeacherByEmail = async (email) => {
+    try {
+        const result = await pool.query("SELECT * FROM teacher WHERE email = $1", [email]);
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error fetching teacher by email:', error);
+        throw error;
+    }
+};
 
 const getStudents = async (req, res) => {
     return pool.query("SELECT * FROM student ORDER BY id");
@@ -32,5 +53,7 @@ module.exports = {
     addStudent,
     updateNotes,
    // updateStudent,
-    deleteStudent
+    deleteStudent,
+    authenticateTeacher,
+    getTeacherByEmail
 }

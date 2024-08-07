@@ -6,6 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="52b05cf3-e078-4b0f-866c-5da3857f37af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginForm/student/student.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginForm/student/student.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/LoginForm/teacher/teacher.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/LoginForm/teacher/teacher.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/RegisterForm/registration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/RegisterForm/registration.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="JavaScript File" />
         <option value="CSS File" />
         <option value="JSX File" />
-        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -36,6 +41,10 @@
     &quot;accountId&quot;: &quot;6fd3508d-479d-450f-9256-57f39231fa5b&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -45,28 +54,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "kotlin-language-version-configured": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Attach to Node.js/Chrome.Unnamed.executor&quot;: &quot;Debug&quot;,
+    &quot;Node.js.studentController.js.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;npm.start.executor&quot;: &quot;Debug&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.1.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\busra\IdeaProjects\PERN-school-managment\frontend\src\components\pages\student" />
       <recent name="C:\Users\busra\IdeaProjects\PERN-school-managment\frontend\src\assets" />
       <recent name="C:\Users\busra\IdeaProjects\PERN-school-managment\frontend\src\components\LoginForm\teacher" />
       <recent name="C:\Users\busra\IdeaProjects\PERN-school-managment\frontend\src\components\LoginForm\student" />
     </key>
+  </component>
+  <component name="RunManager" selected="npm.start">
+    <configuration name="Unnamed" type="ChromiumRemoteDebugType" factoryName="Chromium Remote" nameIsGenerated="true" port="9229">
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" nameIsGenerated="true">
+      <command value="start" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Attach to Node.js/Chrome.Unnamed" />
+      <item itemvalue="npm.start" />
+    </list>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -92,10 +120,27 @@
       <workItem from="1722519548785" duration="1053000" />
       <workItem from="1722535761952" duration="6000" />
       <workItem from="1722580100369" duration="18819000" />
+      <workItem from="1722839418975" duration="4711000" />
+      <workItem from="1722847240123" duration="10535000" />
+      <workItem from="1722864365620" duration="2643000" />
+      <workItem from="1722925448771" duration="6041000" />
+      <workItem from="1722939803983" duration="11919000" />
+      <workItem from="1723011706374" duration="3746000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/backend/node_modules/bcrypt/bcrypt.js</url>
+          <line>189</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

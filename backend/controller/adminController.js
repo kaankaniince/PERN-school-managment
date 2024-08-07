@@ -1,5 +1,37 @@
 const pool = require("../db");
 const adminModel = require("../model/adminModel");
+const jwt = require("jsonwebtoken");
+
+const authenticateAdmin = async (req, res) => {
+    try {
+        const { username, password } = req.body;
+        const user = await adminModel.authenticateAdmin(username, password);
+        if (user) {
+            const token = jwt.sign({ username: user.username, role: user.role_id }, '9a78cd3ea8e4f710862a5ff757eabe16d78111a8e220280b76ba26bbd4d6db2d', { expiresIn: '1h' });
+            res.status(200).json({ status: true, access_token: token });
+        } else {
+            res.status(401).send("Invalid credentials");
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred during login");
+    }
+};
+
+const getAdminByUsername = async (req, res) => {
+    try {
+        const { username } = req.params;
+        const admin = await adminModel.getAdminByUsername(username);
+        if (admin) {
+            res.status(200).json({ user: admin })
+        } else {
+            res.status(404).json({ message: 'Admin not found' });
+        }
+    } catch (err) {
+        console.error('Error fetching admin by username:', err);
+        res.status(500).json({ message: 'Error fetching admin by username', error: err.message });
+    }
+};
 
 const getAdmins = async (req, res) => {
     try {
@@ -138,5 +170,7 @@ module.exports = {
     deleteStudent,
     updateAdmin,
     updateTeacher,
-    updateStudent
+    updateStudent,
+    authenticateAdmin,
+    getAdminByUsername
 }

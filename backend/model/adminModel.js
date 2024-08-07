@@ -1,4 +1,26 @@
 const pool = require('../db');
+const bcrypt = require("bcrypt");
+
+const authenticateAdmin = async (username, password) => {
+    const result = await pool.query("SELECT * FROM admin WHERE username = $1", [username]);
+    if (result.rows.length > 0) {
+        const user = result.rows[0];
+        const isMatch = await bcrypt.compare(password, user.password);
+        return isMatch ? user : null;
+    }
+    return null;
+
+};
+
+const getAdminByUsername = async (username) => {
+    try {
+        const result = await pool.query("SELECT * FROM admin WHERE username = $1", [username]);
+        return result.rows[0];
+    } catch (error) {
+        console.error('Error fetching admin by username:', error);
+        throw error;
+    }
+};
 
 const getAdmins = async (req, res) => {
     return pool.query("SELECT * FROM admin ORDER BY id");
@@ -16,8 +38,8 @@ const addAdmin = async ({username, password, role_id}) => {
     return pool.query("INSERT INTO admin (username, password, role_id) VALUES ($1, $2, $3)", [username, password, role_id]);
 }
 
-const addTeacher = async ({fname, lname, password, lesson, role_id}) => {
-    return pool.query("INSERT INTO teacher (fname, lname, password, lesson, role_id) VALUES ($1, $2, $3, $4, $5)", [fname, lname, password, lesson, role_id]);
+const addTeacher = async ({fname, lname, email, password, lesson, role_id}) => {
+    return pool.query("INSERT INTO teacher (fname, lname, email, password, lesson, role_id) VALUES ($1, $2, $3, $4, $5)", [fname, lname, email, password, lesson, role_id]);
 }
 
 const addStudent = async ({fname, lname, password, email, b_date, lesson, notes, role_id}) => {
@@ -40,8 +62,8 @@ const updateAdmin = async ({username, password, role_id, id}) => {
     return pool.query("UPDATE admin SET username = $1, password = $2, role_id = $3 WHERE id = $4", [username, password, role_id, parseInt(id)]);
 }
 
-const updateTeacher = async ({fname, lname, password, lesson, role_id, id}) => {
-    return pool.query("UPDATE teacher SET fname = $1, lname = $2, password = $3, lesson = $4, role_id = $5 WHERE id = $6", [fname, lname, password, lesson, role_id, parseInt(id)]);
+const updateTeacher = async ({fname, lname, email, password, lesson, role_id, id}) => {
+    return pool.query("UPDATE teacher SET fname = $1, lname = $2, email = $3 password = $4, lesson = $5, role_id = $6 WHERE id = $7", [fname, lname, email, password, lesson, role_id, parseInt(id)]);
 }
 
 const updateStudent = async ({fname, lname, password, email, b_date, lesson, notes, role_id, id}) => {
@@ -59,5 +81,7 @@ module.exports = {
     deleteStudent,
     updateAdmin,
     updateTeacher,
-    updateStudent
+    updateStudent,
+    authenticateAdmin,
+    getAdminByUsername
 }
