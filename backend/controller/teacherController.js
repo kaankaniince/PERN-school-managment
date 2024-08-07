@@ -53,6 +53,16 @@ const getLessons = async (req, res) => {
     }
 }
 
+const getClasses = async (req, res) => {
+    try {
+        const getClasses = await teacherModel.getClasses();
+        res.status(200).json(getClasses.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while getting the classes");
+    }
+}
+
 const addStudent = async (req, res) => {
     try {
         const addStudent = await teacherModel.addStudent(req.body);
@@ -63,6 +73,16 @@ const addStudent = async (req, res) => {
     }
 }
 
+const addClass = async (req, res) => {
+    try {
+        const addClass = await teacherModel.addClass(req.body);
+        res.status(201).json(addClass);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while adding the class");
+    }
+}
+
 const updateStudent = async (req, res) => {
     try {
         const updateStudent = await teacherModel.updateStudent(req.body);
@@ -70,6 +90,16 @@ const updateStudent = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send("An error occurred while updating the student");
+    }
+}
+
+const updateClass = async (req, res) => {
+    try {
+        const updateClass = await teacherModel.updateClass(req.body);
+        res.status(200).send(updateClass)
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while updating the class");
     }
 }
 
@@ -94,13 +124,28 @@ const deleteStudent = async (req, res) => {
     }
 }
 
+const deleteClass = async (req, res) => {
+    const id = parseInt(req.params.id);
+    try {
+        const deleteClass = await teacherModel.deleteClass(id)
+        res.status(204).send(deleteClass);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while deleting the class");
+    }
+}
+
 module.exports = {
     getStudents,
     getLessons,
+    getClasses,
     addStudent,
+    addClass,
    //updateNotes,
     updateStudent,
+    updateClass,
     deleteStudent,
+    deleteClass,
     authenticateTeacher,
     getTeacherByEmail
 }
