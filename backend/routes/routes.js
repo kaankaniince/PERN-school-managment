@@ -59,22 +59,24 @@ router.get('/your-students', teacherController.getStudents)
 router.get('/your-lesson', teacherController.getLessons)
 router.get('/teacher/:email', teacherController.getTeacherByEmail)
 router.get('/your-classes', teacherController.getClasses)
+router.get('/your-notes', teacherController.getNotes)
 
 
 
 // Post
 router.post('/create-student', teacherController.addStudent);
 router.post('/create-class', teacherController.addClass);
+router.post('/create-notes', teacherController.addNotes)
 
 // Put
-//router.put('/update-notes', teacherController.updateNotes);
 router.put('/updt-student', teacherController.updateStudent);
 router.put('/updt-class', teacherController.updateClass);
+router.put('/updt-notes', teacherController.updateNotes)
 
 
 // Delete
 router.delete('/dlt-student/:id', teacherController.deleteStudent);
-router.delete('/dlt-class/:id', teacherController.deleteClass);
+router.delete('/dlt-notes/:id', teacherController.deleteNotes);
 
 
 // Register - Login

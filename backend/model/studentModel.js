@@ -29,15 +29,41 @@ const getStudentById = async (id) => {
 };
 
 const getNotes = async (req,res) => {
-    return  pool.query("SELECT lesson,notes FROM student ORDER BY lesson");
+    return  pool.query("SELECT l.lesson, sln.notes FROM student_lessons_notes sln JOIN lessons l ON sln.lesson_id = l.l_id ORDER BY l.lesson");
 };
 
 // Sum of Notes. More specific in future.
 // With more lesson sum makes more sense
 
-const getNotesSum = async (req,res) => {
-    return  pool.query("SELECT fname, lname, SUM(notes) AS \"sum_of_notes\" FROM student GROUP BY fname, lname ORDER BY fname");
+const getNotesSum = async (req, res) => {
+    return  pool.query(`
+        SELECT s.fname, s.lname, AVG(sln.notes) AS "avg_of_notes"
+        FROM student s
+        JOIN student_lessons_notes sln ON s.id = sln.student_id
+        GROUP BY s.fname, s.lname
+        ORDER BY s.fname
+    `);
 };
+
+//Might use this in Future
+/*const getNotes = async (req, res) => {
+    const id = req.user.id; // Assuming you have set the authenticated user's ID in req.user
+
+    try {
+        const result = await pool.query(
+            `SELECT l.lesson, sln.notes
+            FROM student_lessons_notes sln
+            JOIN lessons l ON sln.lesson_id = l.l_id
+            WHERE sln.student_id = $1
+            ORDER BY l.lesson`,
+            [id]
+        );
+        res.json(result.rows);
+    } catch (err) {
+        console.error(err);
+        res.status(500).send("Server Error");
+    }
+};*/
 
 // Lessons. More specific in future. Getting lessons for your id
 

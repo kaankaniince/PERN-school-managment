@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import Sidebar from "../../SideBar/Sidebar.jsx";
+import {Route, Routes} from "react-router-dom";
+import StudentTeacher from "./studentManagement/studentTeacher.jsx";
 
 const TeacherDashboard = () => {
     const [user, setUser] = useState(null);
@@ -32,12 +35,18 @@ const TeacherDashboard = () => {
     }, []);
 
     if (!user) {
-        return <p>Loading...</p>;
+        return null;
     }
 
     return (
-        <div style={{ color: 'red', fontWeight: 'bold' }}>
-            Welcome, {user.fname + ' ' + user.lname}
+        <div style={{ display: "flex", color: 'black', fontWeight: 'bold' }}>
+            <Sidebar role={user.role_id} />
+            <Routes>
+                <Route path="teacherSchedule" element={<teacherSchedule />} />
+                <Route path="assignTeacher" element={<teacherClasses />} />
+                <Route path="studentAdmin" element={<teacherNotes />} />
+                <Route path="studentTeacher" element={<StudentTeacher />} />
+            </Routes>
         </div>
     );
 };

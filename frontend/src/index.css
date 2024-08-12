@@ -3,9 +3,9 @@
     line-height: 1.5;
     font-weight: 400;
 
+    background: gray;
     color-scheme: light dark;
-    color: rgba(255, 255, 255, 0.87);
-    background-image: url("assets/sc.jpg");
+    color: black;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

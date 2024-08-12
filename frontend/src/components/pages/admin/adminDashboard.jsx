@@ -1,4 +1,10 @@
 import React, { useEffect, useState } from "react";
+import Sidebar from "../../SideBar/Sidebar.jsx";
+import { Routes, Route } from 'react-router-dom';
+import AdminTeacher from './teacherManagement/adminTeacher.jsx';
+import AssignTeacher from './teacherAssignment/assignTeacher.jsx';
+import StudentAdmin from "./studentManagement/studentAdmin.jsx";
+// Import other pages as needed
 
 const AdminDashboard = () => {
     const [user, setUser] = useState(null);
@@ -32,12 +38,19 @@ const AdminDashboard = () => {
     }, []);
 
     if (!user) {
-        return <p>Loading...</p>;
+        return null;
     }
 
     return (
-        <div style={{ color: 'red', fontWeight: 'bold' }}>
-            Welcome, {user.username}
+        <div style={{ display: 'flex', color: 'black', fontWeight: 'bold' }}>
+            <Sidebar role={user.role_id} />
+            <div style={{ flex: 1, padding: '20px' }}>
+                <Routes>
+                    <Route path="adminTeacher" element={<AdminTeacher />} />
+                    <Route path="assignTeacher" element={<AssignTeacher />} />
+                    <Route path="studentAdmin" element={<StudentAdmin />} />
+                </Routes>
+            </div>
         </div>
     );
 };

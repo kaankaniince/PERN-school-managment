@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './styles.css';
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import {IoMdArrowBack} from "react-icons/io";
 
 const Admin = () => {
     const [username, setUsername] = useState('');
@@ -16,7 +17,7 @@ const Admin = () => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ username, password }),
+                body: JSON.stringify({username, password}),
             });
 
             if (response.ok) {
@@ -30,10 +31,10 @@ const Admin = () => {
                     return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
                 }).join(''));
 
-                const { username, role } = JSON.parse(jsonPayload);
+                const {username, role} = JSON.parse(jsonPayload);
                 localStorage.setItem('username', username);
 
-                if (role === 1) {
+               if (role === 1) {
                     navigate('/admin-dashboard');
                 }
             } else {
@@ -46,10 +47,14 @@ const Admin = () => {
         }
     };
 
+    const handleBackClick = () => {
+        navigate('/');
+    };
 
     return (
         <div className="admin-container">
             <div className="login-form">
+                <IoMdArrowBack className="back-arrow" color="black" size={30} onClick={handleBackClick}/>
                 <h2>Admin Girişi</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
@@ -75,7 +80,7 @@ const Admin = () => {
                         />
                     </div>
                     <button type="submit">Giriş Yap</button>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
+                    {error && <p style={{color: 'red'}}>{error}</p>}
                 </form>
             </div>
         </div>

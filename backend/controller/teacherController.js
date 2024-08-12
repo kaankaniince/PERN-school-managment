@@ -63,6 +63,16 @@ const getClasses = async (req, res) => {
     }
 }
 
+const getNotes = async (req, res) => {
+    try {
+        const getNotes = await teacherModel.getNotes();
+        res.status(200).json(getNotes.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while getting the classes");
+    }
+}
+
 const addStudent = async (req, res) => {
     try {
         const addStudent = await teacherModel.addStudent(req.body);
@@ -77,6 +87,16 @@ const addClass = async (req, res) => {
     try {
         const addClass = await teacherModel.addClass(req.body);
         res.status(201).json(addClass);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while adding the class");
+    }
+}
+
+const addNotes = async (req, res) => {
+    try {
+        const addNotes = await teacherModel.addNotes(req.body);
+        res.status(201).json(addNotes);
     } catch (err) {
         console.log(err);
         res.status(500).send("An error occurred while adding the class");
@@ -103,15 +123,15 @@ const updateClass = async (req, res) => {
     }
 }
 
-/*const updateNotes = async (req, res) => {
+const updateNotes = async (req, res) => {
     try {
-        const updateStudent = await teacherModel.updateStudent(req.body);
-        res.status(200).send(updateStudent)
+        const updateNotes = await teacherModel.updateNotes(req.body);
+        res.status(200).send(updateNotes)
     } catch (error) {
         console.log(error);
-        res.status(500).send("An error occurred while updating the student");
+        res.status(500).send("An error occurred while updating the notes");
     }
-}*/
+}
 
 const deleteStudent = async (req, res) => {
     const id = parseInt(req.params.id);
@@ -135,17 +155,31 @@ const deleteClass = async (req, res) => {
     }
 }
 
+const deleteNotes = async (req, res) => {
+    const id = parseInt(req.params.id);
+    try {
+        const deleteNotes = await teacherModel.deleteNotes(id)
+        res.status(204).send(deleteNotes);
+    } catch (error) {
+        console.log(error);
+        res.status(500).send("An error occurred while deleting the notes");
+    }
+}
+
 module.exports = {
     getStudents,
     getLessons,
     getClasses,
+    getNotes,
     addStudent,
     addClass,
-   //updateNotes,
+    addNotes,
     updateStudent,
     updateClass,
+    updateNotes,
     deleteStudent,
     deleteClass,
+    deleteNotes,
     authenticateTeacher,
     getTeacherByEmail
 }

@@ -38,5 +38,14 @@
 }
 
 .read-the-docs {
-  color: #888;
+  color: black;
 }
+
+.admin-teacher {
+  color: black;
+}
+
+body {
+  background: gray;
+}
+

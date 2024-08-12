@@ -1,27 +1,28 @@
 import React, {useState} from 'react';
 import './styles.css';
-import { Link, useNavigate  } from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
+import {IoMdArrowBack} from "react-icons/io";
 
 const Student = () => {
 
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const navigate  = useNavigate();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
         try {
             const response = await fetch(`http://localhost:5000/student-login`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ id, password })
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({id, password})
             });
 
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem('token', data.access_token);
                 localStorage.setItem('id', data.user.id);
-                if(data.user.role === 3) {
+                if (data.user.role === 3) {
                     navigate('/student-dashboard');
                 }
             } else {
@@ -34,9 +35,14 @@ const Student = () => {
         }
     };
 
+    const handleBackClick = () => {
+        navigate('/');
+    };
+
     return (
         <div className="student-container">
             <div className="login-form">
+                <IoMdArrowBack className="back-arrow" color="black" size={30} onClick={handleBackClick}/>
                 <h2>Öğrenci Girişi</h2>
                 <p>Öğrenci Numarası</p>
                 <input
@@ -55,8 +61,9 @@ const Student = () => {
                     onChange={(e) => setPassword(e.target.value)}
                 />
                 <button onClick={handleLogin}>Giriş Yap</button>
-                {error && <p style={{ color: 'red' }}>{error}</p>}
-                <p style={{ textAlign: "center" }}>Hesabınız yok mu? <Link style={{ color: "blue" }} to="/register">Hesap oluşturun.</Link></p>
+                {error && <p style={{color: 'red'}}>{error}</p>}
+                <p style={{textAlign: "center"}}>Hesabınız yok mu? <Link style={{color: "blue"}} to="/register">Hesap
+                    oluşturun.</Link></p>
             </div>
         </div>
     );

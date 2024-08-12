@@ -1,45 +1,21 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './styles.css';
 
-function Home () {
+function Home() {
     return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-            height: '100vh'
-        }}>
+        <div className="home-container">
             <Link to="/admin">
-                <button style={{
-                    width: '200px',
-                    height: '50px',
-                    marginBottom: '10px',
-                    fontSize: '16px',
-                }}>ADMİN</button>
+                <button className="button button-admin">ADMİN</button>
             </Link>
             <Link to="/teacher">
-                <button style={{
-                    width: '200px',
-                    height: '50px',
-                    marginBottom: '10px',
-                    fontSize: '16px',
-                }}>ÖĞRETMEN</button>
+                <button className="button button-teacher">ÖĞRETMEN</button>
             </Link>
             <Link to="/student">
-                <button style={{
-                    width: '200px',
-                    height: '50px',
-                    marginBottom: '10px',
-                    fontSize: '16px',
-                }}>ÖĞRENCİ</button>
+                <button className="button button-student">ÖĞRENCİ</button>
             </Link>
             <Link to="/register">
-                <button style={{
-                    width: '200px',
-                    height: '50px',
-                    fontSize: '16px',
-                }}>KAYIT OL</button>
+                <button className="button button-register">KAYIT OL</button>
             </Link>
         </div>
     );

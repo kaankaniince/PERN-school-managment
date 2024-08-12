@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
+import {IoMdArrowBack} from "react-icons/io";
+import {useNavigate} from "react-router-dom";
 
 const Registration = () => {
     const [formData, setFormData] = useState({
@@ -9,6 +11,7 @@ const Registration = () => {
         password: '',
         b_date: ''
     });
+    const navigate = useNavigate();
 
     const handleChange = (e) => {
         setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -35,9 +38,14 @@ const Registration = () => {
         }
     };
 
+    const handleBackClick = () => {
+        navigate('/');
+    };
+
     return (
         <div className="register-container">
             <div className="login-form">
+                <IoMdArrowBack className="back-arrow" color="black" size={30} onClick={handleBackClick}/>
                 <h1>Kayıt Ol</h1>
                 <form onSubmit={handleSubmit}>
                     <p>Ad</p>

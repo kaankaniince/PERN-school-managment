@@ -30,8 +30,17 @@ const getTeachers = async (req, res) => {
     return pool.query("SELECT * FROM teacher ORDER BY id");
 }
 
-const getStudents = async (req, res) => {
+/*const getStudents = async (req, res) => {
     return pool.query("SELECT * FROM student ORDER BY id");
+}*/
+
+const getStudents = async (req, res) => {
+    return pool.query(`
+        SELECT s.*, c.grade, c.section
+        FROM student s
+                 LEFT JOIN classes c ON s.class_id = c.id
+        ORDER BY s.id;
+    `);
 }
 
 const getClasses = async (req, res) => {
@@ -39,18 +48,29 @@ const getClasses = async (req, res) => {
 }
 
 const getClassAssignments = async (req, res) => {
-    return pool.query("SELECT * FROM class_assignments ORDER BY id");
+    return pool.query(`
+        SELECT ca.*,
+               t.fname,
+               t.lname,
+               c.grade,
+               c.section
+        FROM class_assignments ca
+                 JOIN
+             teacher t ON ca.teacher_id = t.id
+                 JOIN
+             classes c ON ca.class_id = c.id
+    `);
 }
 const addAdmin = async ({username, password, role_id}) => {
     return pool.query("INSERT INTO admin (username, password, role_id) VALUES ($1, $2, $3)", [username, password, role_id]);
 }
 
 const addTeacher = async ({fname, lname, email, password, lesson, role_id}) => {
-    return pool.query("INSERT INTO teacher (fname, lname, email, password, lesson, role_id) VALUES ($1, $2, $3, $4, $5)", [fname, lname, email, password, lesson, role_id]);
+    return pool.query("INSERT INTO teacher (fname, lname, email, password, lesson, role_id) VALUES ($1, $2, $3, $4, $5, $6)", [fname, lname, email, password, lesson, role_id]);
 }
 
-const addStudent = async ({fname, lname, password, email, b_date, lesson, notes, class_id, role_id}) => {
-    return pool.query("INSERT INTO student (fname, lname, password, email, b_date, lesson, notes, class_id, role_id) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)", [fname, lname, password, email, b_date, lesson, notes, class_id, role_id]);
+const addStudent = async ({fname, lname, password, email, b_date, class_id, role_id}) => {
+    return pool.query("INSERT INTO student (fname, lname, password, email, b_date, class_id, role_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", [fname, lname, password, email, b_date, class_id, role_id]);
 }
 
 const addClass = async ({grade, section}) => {
@@ -86,11 +106,11 @@ const updateAdmin = async ({username, password, role_id, id}) => {
 }
 
 const updateTeacher = async ({fname, lname, email, password, lesson, role_id, id}) => {
-    return pool.query("UPDATE teacher SET fname = $1, lname = $2, email = $3 password = $4, lesson = $5, role_id = $6 WHERE id = $7", [fname, lname, email, password, lesson, role_id, parseInt(id)]);
+    return pool.query("UPDATE teacher SET fname = $1, lname = $2, email = $3, password = $4, lesson = $5, role_id = $6 WHERE id = $7", [fname, lname, email, password, lesson, role_id, parseInt(id)]);
 }
 
-const updateStudent = async ({fname, lname, password, email, b_date, lesson, notes, class_id, role_id, id}) => {
-    return pool.query("UPDATE student SET fname = $1, lname = $2, password = $3, email = $4, b_date = $5, lesson = $6, notes = $7, class_id = $8, role_id = $9 WHERE id = $10", [fname, lname, password, email, b_date, lesson, notes, class_id, role_id, parseInt(id)]);
+const updateStudent = async ({fname, lname, password, email, b_date, class_id, role_id, id}) => {
+    return pool.query("UPDATE student SET fname = $1, lname = $2, password = $3, email = $4, b_date = $5, class_id = $6, role_id = $7 WHERE id = $8", [fname, lname, password, email, b_date, class_id, role_id, parseInt(id)]);
 }
 
 const updateClass = async ({grade, section, id}) => {

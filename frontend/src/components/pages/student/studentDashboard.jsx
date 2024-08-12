@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import student from "../../LoginForm/student/student.jsx";
-
+import Sidebar from "../../SideBar/Sidebar.jsx";
 const StudentDashboard = () => {
     const [user, setUser] = useState(null);
 
@@ -26,12 +25,13 @@ const StudentDashboard = () => {
     }, []);
 
     if (!user) {
-        return <p>Loading...</p>;
+        return null;
     }
 
     return (
         <div style={{ color: 'red', fontWeight: 'bold' }}>
-            Welcome, {user.fname}
+            Welcome, {user.fname + ' ' + user.lname}
+            <Sidebar role={user.role_id} />
         </div>
 
     )

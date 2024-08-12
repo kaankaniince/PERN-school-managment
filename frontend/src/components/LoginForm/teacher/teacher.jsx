@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './styles.css';
 import {useNavigate} from "react-router-dom";
+import {IoMdArrowBack} from "react-icons/io";
 
 const Teacher = () => {
     const [email, setEmail] = useState('');
@@ -44,9 +45,14 @@ const Teacher = () => {
         }
     };
 
+    const handleBackClick = () => {
+        navigate('/');
+    };
+
     return (
         <div className="teacher-container">
             <div className="login-form">
+                <IoMdArrowBack className="back-arrow" color="black" size={30} onClick={handleBackClick}/>
                 <h2>Öğretmen Girişi</h2>
                 <form onSubmit={handleSubmit}>
                     <div>
