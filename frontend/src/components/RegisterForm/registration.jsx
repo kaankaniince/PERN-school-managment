@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './styles.css';
+import './register.css';
 import {IoMdArrowBack} from "react-icons/io";
 import {useNavigate} from "react-router-dom";
 

@@ -28,24 +28,35 @@ const getStudentById = async (id) => {
     }
 };
 
-const getNotes = async (req,res) => {
-    return  pool.query("SELECT l.lesson, sln.notes FROM student_lessons_notes sln JOIN lessons l ON sln.lesson_id = l.l_id ORDER BY l.lesson");
+const getNotes = async (id) => {
+    return pool.query(`
+        SELECT s.id,
+               s.fname,
+               s.lname,
+               s.email,
+               s.b_date,
+               s.class_id,
+               s.school_absence,
+               l.l_id,
+               l.lesson,
+               sn.notes
+        FROM student s
+                 JOIN student_lessons_notes sn ON s.id = sn.student_id
+                 JOIN lessons l ON sn.lesson_id = l.l_id
+        WHERE s.id = $1;
+    `, [parseInt(id)]);
 };
 
-// Sum of Notes. More specific in future.
-// With more lesson sum makes more sense
-
 const getNotesSum = async (req, res) => {
-    return  pool.query(`
+    return pool.query(`
         SELECT s.fname, s.lname, AVG(sln.notes) AS "avg_of_notes"
         FROM student s
-        JOIN student_lessons_notes sln ON s.id = sln.student_id
+                 JOIN student_lessons_notes sln ON s.id = sln.student_id
         GROUP BY s.fname, s.lname
         ORDER BY s.fname
     `);
 };
 
-//Might use this in Future
 /*const getNotes = async (req, res) => {
     const id = req.user.id; // Assuming you have set the authenticated user's ID in req.user
 
@@ -65,11 +76,40 @@ const getNotesSum = async (req, res) => {
     }
 };*/
 
-// Lessons. More specific in future. Getting lessons for your id
-
-const getLessons = async (req,res) => {
-    return  pool.query("SELECT lesson FROM lessons ORDER BY lesson");
+const getLessons = async (req, res) => {
+    return pool.query("SELECT lesson FROM lessons ORDER BY lesson");
 };
+
+const getAbsenteeism = async (id) => {
+    return pool.query(`
+        SELECT 
+            a.id,
+            a.created_at,
+            s.school_absence
+        FROM absenteeism a
+                 JOIN student s ON a.student_id = s.id
+        WHERE s.id = $1
+        ORDER BY a.created_at;
+    `, [parseInt(id)]);
+};
+
+const getSchedule = async (id) => {
+    return pool.query(`
+        SELECT sch.id,
+               sch.day,
+               sch.start_time,
+               sch.end_time,
+               l.lesson,
+               c.grade,
+               c.section
+        FROM schedule sch
+             JOIN classes c ON sch.class_id = c.id
+             JOIN lessons l ON sch.lesson_id = l.l_id
+             JOIN student s ON s.class_id = c.id
+        WHERE s.id = $1
+        ORDER BY sch.day, sch.start_time;`, [id]);
+}
+
 
 module.exports = {
     getNotes,
@@ -77,5 +117,7 @@ module.exports = {
     getLessons,
     registerStudent,
     authenticateStudent,
-    getStudentById
+    getStudentById,
+    getAbsenteeism,
+    getSchedule
 }

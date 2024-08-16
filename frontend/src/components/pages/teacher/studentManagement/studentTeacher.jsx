@@ -1,7 +1,15 @@
 import React, {useEffect, useState} from 'react';
-import './studentTeacher.css'
-import EditModal from "./EditModal.jsx";
-import AddModal from "./AddModal.jsx";
+import './studentTeacher.css';
+import EditModal from './EditModal.jsx';
+import AddModal from './AddModal.jsx';
+
+const formatDateForInput = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+};
 
 const StudentTeacher = () => {
     const [students, setStudents] = useState([]);
@@ -24,9 +32,12 @@ const StudentTeacher = () => {
     }, []);
 
     const handleEdit = (student) => {
-        setSelectedStudent(student);
+        setSelectedStudent({
+            ...student,
+            b_date: formatDateForInput(student.b_date)
+        });
         setEditModalOpen(true);
-    }
+    };
 
     const handleDelete = async (id) => {
         try {
@@ -35,7 +46,7 @@ const StudentTeacher = () => {
             });
             setStudents(students.filter(student => student.id !== id));
         } catch (error) {
-            console.error('Error deleting student', error)
+            console.error('Error deleting student', error);
         }
     };
 
@@ -45,9 +56,7 @@ const StudentTeacher = () => {
 
     const handleSave = (updatedStudent) => {
         setStudents(students.map(student => (student.id === updatedStudent.id ? updatedStudent : student)));
-    }
-
-
+    };
 
     const renderRows = students.map((student) => (
         <tr key={student.id}>
@@ -57,7 +66,7 @@ const StudentTeacher = () => {
             <td>{student.grade !== null && student.section !== null ? `${student.grade} - ${student.section}` : ''}</td>
             <td>{student.email}</td>
             <td>****</td>
-            <td>{student.b_date.slice(0, 10)}</td>
+            <td>{new Date(student.b_date).toLocaleDateString()}</td>
             <td>
                 <button className="edit-student-button" onClick={() => handleEdit(student)}>Edit</button>
                 <button className="delete-student-button" onClick={() => handleDelete(student.id)}>Delete</button>

@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import Sidebar from "../../SideBar/Sidebar.jsx";
 import {Route, Routes} from "react-router-dom";
 import StudentTeacher from "./studentManagement/studentTeacher.jsx";
+import TeacherNotes from "./Notes/teacherNotes.jsx";
+import TeacherClasses from "./Classes/teacherClasses.jsx";
+import TeacherSchedule from "./Schedule/teacherSchedule.jsx";
 
 const TeacherDashboard = () => {
     const [user, setUser] = useState(null);
@@ -42,9 +45,9 @@ const TeacherDashboard = () => {
         <div style={{ display: "flex", color: 'black', fontWeight: 'bold' }}>
             <Sidebar role={user.role_id} />
             <Routes>
-                <Route path="teacherSchedule" element={<teacherSchedule />} />
-                <Route path="assignTeacher" element={<teacherClasses />} />
-                <Route path="studentAdmin" element={<teacherNotes />} />
+                <Route path="teacherSchedule" element={<TeacherSchedule />} />
+                <Route path="teacherClasses" element={<TeacherClasses />} />
+                <Route path="teacherNotes" element={<TeacherNotes />} />
                 <Route path="studentTeacher" element={<StudentTeacher />} />
             </Routes>
         </div>

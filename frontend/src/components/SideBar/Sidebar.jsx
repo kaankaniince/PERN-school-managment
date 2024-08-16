@@ -38,9 +38,9 @@ const Sidebar = ({ role }) => {
             ];
         } else if (role === 3) {
             menuItems = [
-                { path: '/student-dashboard/home', label: 'Schedule' },
-                { path: '/student-dashboard/about', label: 'Notes' },
-                { path: '/student-dashboard/student', label: 'Absenteeism' }
+                { path: '/student-dashboard/studentSchedule', label: 'Schedule' },
+                { path: '/student-dashboard/studentNotes', label: 'Notes' },
+                { path: '/student-dashboard/studentAbsenteeism', label: 'Absenteeism' }
             ];
         }
 

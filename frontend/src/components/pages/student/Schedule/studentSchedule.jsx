@@ -1,22 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import './teacherSchedule.css';
-import EditModal from './EditModal';
+import './studentSchedule.css';
 
-const TeacherSchedule = () => {
+const StudentSchedule = () => {
     const [schedule, setSchedule] = useState([]);
-    const [isEditModalOpen, setEditModalOpen] = useState(false);
-    const [selectedSlot, setSelectedSlot] = useState(null);
 
     useEffect(() => {
         const fetchSchedule = async () => {
             try {
-                const response = await fetch('http://localhost:5000/schedule', {
+                const response = await fetch('http://localhost:5000/student-schedule', {
                     headers: {
                         'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                 });
                 const data = await response.json();
-                console.log(data);
+                console.log('Fetched data:', data);
                 setSchedule(data);
             } catch (error) {
                 console.error('Error fetching schedule:', error);
@@ -26,36 +23,25 @@ const TeacherSchedule = () => {
         fetchSchedule();
     }, []);
 
-    const handleEdit = (slot) => {
-        setSelectedSlot(slot);
-        setEditModalOpen(true);
-    };
-
-    const handleSave = (updatedSlot) => {
-        setSchedule(schedule.map(slot => (slot.id === updatedSlot.id ? updatedSlot : slot)));
-    };
-
     const renderRows = () => {
         const times = ['08:00-08:50', '09:00-09:50', '10:00-10:50', '11:00-11:50', '12:00-12:50'];
         const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
         return times.map((time, index) => {
-            const startTime = time.split('-')[0]; // '08:00' formatında zaman dilimi
+            const [startTime] = time.split('-');
             return (
                 <tr key={index}>
                     <td>{time}</td>
                     {days.map((day) => {
                         const slot = schedule.find(sch => {
-                            const slotStartTime = sch.start_time.substring(0, 5); // '08:00' formatında start_time
+                            const slotStartTime = sch.start_time.substring(0, 5);
+                            console.log(`Checking: ${sch.day} === ${day} && ${slotStartTime} === ${startTime}`);
                             return sch.day === day && slotStartTime === startTime;
                         });
                         return (
                             <td key={day}>
                                 {slot ? (
-                                    <>
-                                        <div>{slot.lesson}</div>
-                                        <button className="edit-notes-button" onClick={() => handleEdit(slot)}>Edit</button>
-                                    </>
+                                    <div>{slot.lesson}</div>
                                 ) : '—'}
                             </td>
                         );
@@ -64,7 +50,6 @@ const TeacherSchedule = () => {
             );
         });
     };
-
 
     return (
         <div className="teacher-schedule-container">
@@ -83,16 +68,8 @@ const TeacherSchedule = () => {
                 {renderRows()}
                 </tbody>
             </table>
-            {selectedSlot && (
-                <EditModal
-                    isOpen={isEditModalOpen}
-                    onClose={() => setEditModalOpen(false)}
-                    schedule={selectedSlot}
-                    onSave={handleSave}
-                />
-            )}
         </div>
     );
 };
 
-export default TeacherSchedule;
+export default StudentSchedule;

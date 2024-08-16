@@ -31,14 +31,14 @@ const authenticateStudent = async (req, res) => {
 
 const getNotes = async (req, res) => {
     try {
-        const getNotes = await studentModel.getNotes();
-        res.status(200).json(getNotes.rows);
-    }catch (err){
-        console.log(err);
-        res.status(500).send("An error occurred while getting the notes");
+        const id = req.user.id
+        const result = await studentModel.getNotes(id);
+        res.status(200).json(result.rows);
+    } catch (err) {
+        console.error('Error fetching notes:', err);
+        res.status(500).send('An error occurred while getting the notes');
     }
-}
-
+};
 const getNotesSum = async (req, res) => {
     try {
         const getNotesSum = await studentModel.getNotesSum();
@@ -74,11 +74,36 @@ const getLessons = async (req, res) => {
     }
 }
 
+const getAbsenteeism = async (req, res) => {
+    try {
+        const id = req.user.id;
+        const absenteeismRecords = await studentModel.getAbsenteeism(id);
+        res.status(200).json(absenteeismRecords.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while getting absenteeism records");
+    }
+};
+
+const getSchedule = async (req, res) => {
+    try {
+        const id = req.user.id
+        const getSchedule = await studentModel.getSchedule(id);
+        res.status(200).json(getSchedule.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(500).send("An error occurred while getting the schedule");
+    }
+}
+
+
 module.exports = {
     getNotes,
     getNotesSum,
     getLessons,
     registerStudent,
     authenticateStudent,
-    getStudentById
+    getStudentById,
+    getAbsenteeism,
+    getSchedule
 }

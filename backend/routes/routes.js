@@ -47,10 +47,13 @@ router.delete('/delete-assignments/:id', adminController.deleteClassAssignments)
 // Student Routes
 
 // Get
-router.get('/notes', studentController.getNotes);
+router.get('/notes', authenticateToken, studentController.getNotes);
 router.get('/sum-notes', studentController.getNotesSum);
 router.get('/lessons', studentController.getLessons);
 router.get('/student/:id', studentController.getStudentById)
+router.get('/absenteeism', authenticateToken, studentController.getAbsenteeism)
+router.get('/student-schedule', authenticateToken, studentController.getSchedule)
+
 
 // Teacher Routes
 
@@ -59,7 +62,9 @@ router.get('/your-students', teacherController.getStudents)
 router.get('/your-lesson', teacherController.getLessons)
 router.get('/teacher/:email', teacherController.getTeacherByEmail)
 router.get('/your-classes', teacherController.getClasses)
-router.get('/your-notes', teacherController.getNotes)
+router.get('/your-notes', authenticateToken, teacherController.getTeacherStudentsNotes)
+router.get('/your-class', authenticateToken, teacherController.getClassStudents)
+router.get('/schedule', authenticateToken, teacherController.getSchedule)
 
 
 
@@ -71,8 +76,10 @@ router.post('/create-notes', teacherController.addNotes)
 // Put
 router.put('/updt-student', teacherController.updateStudent);
 router.put('/updt-class', teacherController.updateClass);
-router.put('/updt-notes', teacherController.updateNotes)
-
+router.put('/upsert-notes', authenticateToken, teacherController.upsertNotes)
+router.put('/remove-class', teacherController.removeStudentClass)
+router.put('/updt-class-student', teacherController.updateStudentClass)
+router.put('/update-schedule', authenticateToken, teacherController.updateSchedule)
 
 // Delete
 router.delete('/dlt-student/:id', teacherController.deleteStudent);
