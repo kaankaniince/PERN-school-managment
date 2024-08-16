@@ -5,9 +5,9 @@ import './styles.css';
 function Home() {
     return (
         <div className="home-container">
-            <Link to="/admin">
+            {/*<Link to="/admin">
                 <button className="button button-admin">ADMİN</button>
-            </Link>
+            </Link>*/}
             <Link to="/teacher">
                 <button className="button button-teacher">ÖĞRETMEN</button>
             </Link>

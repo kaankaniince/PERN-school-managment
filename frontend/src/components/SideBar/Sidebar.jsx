@@ -11,7 +11,7 @@ const Sidebar = ({ role }) => {
         localStorage.removeItem('token');
         if (role === 1) {
             localStorage.removeItem('username');
-            navigate('/admin');
+            navigate('/admin-login-page');
         } else if (role === 2) {
             localStorage.removeItem('email');
             navigate('/teacher');

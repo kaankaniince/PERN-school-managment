@@ -6,22 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="52b05cf3-e078-4b0f-866c-5da3857f37af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/RegisterForm/registration.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/RegisterForm/registration.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/RegisterForm/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/RegisterForm/register.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/SideBar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SideBar/Sidebar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/admin/studentManagement/studentAdmin.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/admin/studentManagement/studentAdmin.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/admin/studentManagement/studentAdmin.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/admin/studentManagement/studentAdmin.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/admin/teacherAssignment/assignTeacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/admin/teacherAssignment/assignTeacher.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/admin/teacherManagement/adminTeacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/admin/teacherManagement/adminTeacher.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/student/studentDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/student/studentDashboard.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Classes/teacherClasses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Classes/teacherClasses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Notes/teacherNotes.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Notes/teacherNotes.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Schedule/teacherSchedule.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/Schedule/teacherSchedule.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/studentManagement/studentTeacher.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/studentManagement/studentTeacher.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/studentManagement/studentTeacher.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/studentManagement/studentTeacher.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/pages/teacher/teacherDashboard.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/pages/teacher/teacherDashboard.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,7 +153,7 @@
       <workItem from="1723729500918" duration="3293000" />
       <workItem from="1723742112522" duration="3380000" />
       <workItem from="1723748345493" duration="393000" />
-      <workItem from="1723789252120" duration="467000" />
+      <workItem from="1723789252120" duration="3915000" />
     </task>
     <servers />
   </component>
