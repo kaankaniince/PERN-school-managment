@@ -12,7 +12,7 @@ const authenticateAdmin = async (username, password) => {
 
 };
 
-const getAdminByUsername = async (username) => {
+ const getAdminByUsername = async (username) => {
     try {
         const result = await pool.query("SELECT * FROM admin WHERE username = $1", [username]);
         return result.rows[0];

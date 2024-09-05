@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="52b05cf3-e078-4b0f-866c-5da3857f37af" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/App.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/SideBar/Sidebar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/SideBar/Sidebar.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,6 +22,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
@@ -57,9 +59,9 @@
     &quot;Attach to Node.js/Chrome.Unnamed.executor&quot;: &quot;Debug&quot;,
     &quot;Node.js.studentController.js.executor&quot;: &quot;Debug&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feat&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/busra/IdeaProjects/PERN-school-managment/frontend/src/components/pages/teacher/Schedule&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/busra/Desktop/pern-chat-app&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -153,7 +155,17 @@
       <workItem from="1723729500918" duration="3293000" />
       <workItem from="1723742112522" duration="3380000" />
       <workItem from="1723748345493" duration="393000" />
-      <workItem from="1723789252120" duration="3915000" />
+      <workItem from="1723789252120" duration="9357000" />
+      <workItem from="1723813634086" duration="598000" />
+      <workItem from="1723842384421" duration="673000" />
+      <workItem from="1723843285709" duration="560000" />
+      <workItem from="1724148498929" duration="2526000" />
+      <workItem from="1724222217154" duration="762000" />
+      <workItem from="1724314846832" duration="43000" />
+      <workItem from="1724317362408" duration="34000" />
+      <workItem from="1724333469307" duration="759000" />
+      <workItem from="1725519601947" duration="3519000" />
+      <workItem from="1725537496677" duration="981000" />
     </task>
     <servers />
   </component>
@@ -165,7 +177,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -181,5 +205,9 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
