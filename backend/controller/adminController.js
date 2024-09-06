@@ -36,16 +36,6 @@ const getAdminByUsername = async (req, res) => {
     }
 };
 
-const getAdmins = async (req, res) => {
-    try {
-        const getAdmins = await adminModel.getAdmins();
-        res.status(200).json(getAdmins.rows);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while getting the admins");
-    }
-}
-
 const getTeachers = async (req, res) => {
     try {
         const getTeachers = await adminModel.getTeachers();
@@ -66,16 +56,6 @@ const getStudents = async (req, res) => {
     }
 }
 
-const getClasses = async (req, res) => {
-    try {
-        const getClasses = await adminModel.getClasses();
-        res.status(200).json(getClasses.rows);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while getting the classes");
-    }
-}
-
 const getClassAssignments = async (req, res) => {
     try {
         const getClassAssignments = await adminModel.getClassAssignments();
@@ -83,16 +63,6 @@ const getClassAssignments = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).send("An error occurred while getting the class assignments");
-    }
-}
-
-const addAdmin = async (req, res) => {
-    try {
-        const addAdmin = await adminModel.addAdmin(req.body);
-        res.status(201).json(addAdmin);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while adding the admin");
     }
 }
 
@@ -116,16 +86,6 @@ const addStudent = async (req, res) => {
     }
 }
 
-const addClass = async (req, res) => {
-    try {
-        const addClass = await adminModel.addClass(req.body);
-        res.status(201).json(addClass);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while adding the class");
-    }
-}
-
 const addClassAssignments = async (req, res) => {
     try {
         const addClassAssignments = await adminModel.addClassAssignments(req.body);
@@ -133,17 +93,6 @@ const addClassAssignments = async (req, res) => {
     } catch (err) {
         console.log(err);
         res.status(500).send("An error occurred while adding the class assignments");
-    }
-}
-
-const deleteAdmin = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const deleteAdmin = await adminModel.deleteAdmin(id)
-        res.status(204).send(deleteAdmin);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while deleting the admin");
     }
 }
 
@@ -169,17 +118,6 @@ const deleteStudent = async (req, res) => {
     }
 }
 
-const deleteClass = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const deleteClass = await adminModel.deleteClass(id)
-        res.status(204).send(deleteClass);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while deleting the class");
-    }
-}
-
 const deleteClassAssignments = async (req, res) => {
     const id = parseInt(req.params.id);
     try {
@@ -188,16 +126,6 @@ const deleteClassAssignments = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send("An error occurred while deleting the class assignments");
-    }
-}
-
-const updateAdmin = async (req, res) => {
-    try {
-        const updateAdmin = await adminModel.updateAdmin(req.body);
-        res.status(200).send(updateAdmin)
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while updating the admin");
     }
 }
 
@@ -221,15 +149,6 @@ const updateStudent = async (req, res) => {
     }
 }
 
-const updateClass = async (req, res) => {
-    try {
-        const updateClass = await adminModel.updateClass(req.body);
-        res.status(200).send(updateClass)
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while updating the class");
-    }
-}
 
 const updateClassAssignments = async (req, res) => {
     try {
@@ -242,25 +161,17 @@ const updateClassAssignments = async (req, res) => {
 }
 
 module.exports = {
-    getAdmins,
     getTeachers,
     getStudents,
-    getClasses,
     getClassAssignments,
-    addAdmin,
     addTeacher,
     addStudent,
-    addClass,
     addClassAssignments,
-    deleteAdmin,
     deleteTeacher,
     deleteStudent,
-    deleteClass,
     deleteClassAssignments,
-    updateAdmin,
     updateTeacher,
     updateStudent,
-    updateClass,
     updateClassAssignments,
     authenticateAdmin,
     getAdminByUsername

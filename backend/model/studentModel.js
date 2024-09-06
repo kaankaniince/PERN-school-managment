@@ -47,7 +47,7 @@ const getNotes = async (id) => {
     `, [parseInt(id)]);
 };
 
-const getNotesSum = async (req, res) => {
+/*const getNotesSum = async (req, res) => {
     return pool.query(`
         SELECT s.fname, s.lname, AVG(sln.notes) AS "avg_of_notes"
         FROM student s
@@ -55,26 +55,8 @@ const getNotesSum = async (req, res) => {
         GROUP BY s.fname, s.lname
         ORDER BY s.fname
     `);
-};
-
-/*const getNotes = async (req, res) => {
-    const id = req.user.id; // Assuming you have set the authenticated user's ID in req.user
-
-    try {
-        const result = await pool.query(
-            `SELECT l.lesson, sln.notes
-            FROM student_lessons_notes sln
-            JOIN lessons l ON sln.lesson_id = l.l_id
-            WHERE sln.student_id = $1
-            ORDER BY l.lesson`,
-            [id]
-        );
-        res.json(result.rows);
-    } catch (err) {
-        console.error(err);
-        res.status(500).send("Server Error");
-    }
 };*/
+
 
 const getLessons = async (req, res) => {
     return pool.query("SELECT lesson FROM lessons ORDER BY lesson");
@@ -113,7 +95,7 @@ const getSchedule = async (id) => {
 
 module.exports = {
     getNotes,
-    getNotesSum,
+    // getNotesSum,
     getLessons,
     registerStudent,
     authenticateStudent,

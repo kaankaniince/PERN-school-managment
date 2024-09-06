@@ -45,26 +45,6 @@ const getStudents = async (req, res) => {
     }
 }
 
-const getLessons = async (req, res) => {
-    try {
-        const getLessons = await teacherModel.getLessons();
-        res.status(200).json(getLessons.rows);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while getting the lessons");
-    }
-}
-
-const getClasses = async (req, res) => {
-    try {
-        const getClasses = await teacherModel.getClasses();
-        res.status(200).json(getClasses.rows);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while getting the classes");
-    }
-}
-
 const getTeacherStudentsNotes = async (req, res) => {
     try {
         const email = req.user.email
@@ -109,26 +89,6 @@ const addStudent = async (req, res) => {
     }
 }
 
-const addClass = async (req, res) => {
-    try {
-        const addClass = await teacherModel.addClass(req.body);
-        res.status(201).json(addClass);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while adding the class");
-    }
-}
-
-const addNotes = async (req, res) => {
-    try {
-        const addNotes = await teacherModel.addNotes(req.body);
-        res.status(201).json(addNotes);
-    } catch (err) {
-        console.log(err);
-        res.status(500).send("An error occurred while adding the class");
-    }
-}
-
 const updateStudent = async (req, res) => {
     try {
         const updateStudent = await teacherModel.updateStudent(req.body);
@@ -136,16 +96,6 @@ const updateStudent = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send("An error occurred while updating the student");
-    }
-}
-
-const updateClass = async (req, res) => {
-    try {
-        const updateClass = await teacherModel.updateClass(req.body);
-        res.status(200).send(updateClass)
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while updating the class");
     }
 }
 
@@ -158,19 +108,6 @@ const updateSchedule = async (req, res) => {
         res.status(500).send("An error occurred while updating the schedule");
     }
 }
-
-/*const updateNotes = async (req, res) => {
-    try {
-        const { notes, student_id, lesson_id } = req.body;
-        const email = req.user.email; // Öğretmenin e-posta adresini `req.user` üzerinden al
-
-        const result = await teacherModel.updateNotes({ notes, student_id, lesson_id, email });
-        res.status(200).send(result);
-    } catch (error) {
-        console.error('Error in updateNotes controller:', error);
-        res.status(500).send("An error occurred while updating the notes");
-    }
-};*/
 
 const upsertNotes = async (req, res) => {
     try {
@@ -196,28 +133,6 @@ const deleteStudent = async (req, res) => {
     }
 }
 
-const deleteClass = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const deleteClass = await teacherModel.deleteClass(id)
-        res.status(204).send(deleteClass);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while deleting the class");
-    }
-}
-
-const deleteNotes = async (req, res) => {
-    const id = parseInt(req.params.id);
-    try {
-        const deleteNotes = await teacherModel.deleteNotes(id)
-        res.status(204).send(deleteNotes);
-    } catch (error) {
-        console.log(error);
-        res.status(500).send("An error occurred while deleting the notes");
-    }
-}
-
 const removeStudentClass = async (req, res) => {
     try {
         const removeStudentClass = await teacherModel.removeStudentClass(req.body);
@@ -240,20 +155,13 @@ const updateStudentClass = async (req, res) => {
 
 module.exports = {
     getStudents,
-    getLessons,
-    getClasses,
     getTeacherStudentsNotes,
     getClassStudents,
     getSchedule,
     addStudent,
-    addClass,
-    addNotes,
     updateStudent,
-    updateClass,
     upsertNotes,
     deleteStudent,
-    deleteClass,
-    deleteNotes,
     authenticateTeacher,
     getTeacherByEmail,
     removeStudentClass,

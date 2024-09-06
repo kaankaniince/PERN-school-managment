@@ -39,7 +39,7 @@ const getNotes = async (req, res) => {
         res.status(500).send('An error occurred while getting the notes');
     }
 };
-const getNotesSum = async (req, res) => {
+/*const getNotesSum = async (req, res) => {
     try {
         const getNotesSum = await studentModel.getNotesSum();
         res.status(200).json(getNotesSum.rows);
@@ -47,7 +47,7 @@ const getNotesSum = async (req, res) => {
         console.log(err);
         res.status(500).send("An error occurred while getting the sums of notes");
     }
-}
+}*/
 
 const getStudentById = async (req, res) => {
     try {
@@ -99,7 +99,7 @@ const getSchedule = async (req, res) => {
 
 module.exports = {
     getNotes,
-    getNotesSum,
+    // getNotesSum,
     getLessons,
     registerStudent,
     authenticateStudent,

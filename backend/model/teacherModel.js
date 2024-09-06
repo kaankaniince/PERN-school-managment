@@ -36,15 +36,6 @@ const getStudents = async (req, res) => {
     `);
 }
 
-const getLessons = async (req, res) => {
-    return pool.query("SELECT fname, lname, lesson FROM teacher ORDER BY lesson");
-};
-
-const getClasses = async (req, res) => {
-    return pool.query("SELECT * FROM classes ORDER BY id");
-};
-
-
 //Teacher should only see his own class notes
 const getTeacherStudentsNotes = async (email) => {
     return pool.query(`
@@ -115,21 +106,8 @@ const addStudent = async ({fname, lname, password, email, b_date, class_id, role
     return pool.query("INSERT INTO student (fname, lname, password, email, b_date, class_id, role_id) VALUES ($1, $2, $3, $4, $5, $6, $7)", [fname, lname, password, email, b_date, class_id, role_id]);
 };
 
-const addClass = async ({grade, section}) => {
-    return pool.query("INSERT INTO classes (grade, section) VALUES ($1, $2)", [grade, section]);
-};
-
-//Might update later
-const addNotes = async ({student_id, teacher_id, lesson_id, notes}) => {
-    return pool.query("INSERT INTO student_lessons_notes (student_id, lesson_id, teacher_id, notes) VALUES ($1, $2, $3, $4)", [student_id, teacher_id, lesson_id, notes]);
-};
-
 const updateStudent = async ({fname, lname, password, email, b_date, class_id, role_id, id}) => {
     return pool.query("UPDATE student SET fname = $1, lname = $2, password = $3, email = $4, b_date = $5, class_id = $6, role_id = $7 WHERE id = $8", [fname, lname, password, email, b_date, class_id, role_id, parseInt(id)]);
-}
-
-const updateClass = async ({grade, section, id}) => {
-    return pool.query("UPDATE classes SET grade = $1, section = $2 WHERE id = $3", [grade, section, parseInt(id)]);
 }
 
 const updateSchedule = async ({day, start_time, end_time, lesson_id, id}) => {
@@ -143,29 +121,6 @@ const updateSchedule = async ({day, start_time, end_time, lesson_id, id}) => {
     `, [day, start_time, end_time, lesson_id, parseInt(id)]);
 }
 
-//Might update Later
-/*const updateNotes = async ({student_id, teacher_id, lesson_id, notes, id}) => {
-    return pool.query("UPDATE student_lessons_notes SET student_id = $1, teacher_id = $2, lesson_id = $3, notes = $4 WHERE id = $5", [student_id, teacher_id, lesson_id, notes, parseInt(id)]);
-}*/
-
-/*const updateNotes = async ({ notes, student_id, lesson_id, email }) => {
-    try {
-        const result = await pool.query(`
-            UPDATE student_lessons_notes sln
-            SET notes = $1
-            FROM lessons l
-            JOIN teacher t ON t.lesson = l.lesson
-            WHERE sln.lesson_id = l.l_id
-              AND sln.student_id = $2
-              AND l.l_id = $3
-              AND t.email = $4;
-        `, [notes, student_id, lesson_id, email]);
-        return result;
-    } catch (error) {
-        console.error('Error updating notes:', error);
-        throw error; // Hata durumunda bu hatayı controller'a ilet
-    }
-};*/
 
 const upsertNotes = async ({ notes, student_id, lesson_id, teacher_id }) => {
     return pool.query(
@@ -177,21 +132,8 @@ const upsertNotes = async ({ notes, student_id, lesson_id, teacher_id }) => {
     );
 };
 
-
-
-
-
-
 const deleteStudent = async (id) => {
     return pool.query("DELETE FROM student WHERE id = $1", [id])
-}
-
-const deleteClass = async (id) => {
-    return pool.query("DELETE FROM classes WHERE id = $1", [id])
-}
-
-const deleteNotes = async (id) => {
-    return pool.query("DELETE FROM student_lessons_notes WHERE id = $1", [id])
 }
 
 const removeStudentClass = async ({id}) => {
@@ -206,20 +148,13 @@ const updateStudentClass = async ({class_id, id}) => {
 
 module.exports = {
     getStudents,
-    getLessons,
-    getClasses,
     getTeacherStudentsNotes,
     getClassStudents,
     getSchedule,
     addStudent,
-    addClass,
-    addNotes,
-    updateClass,
     updateStudent,
     upsertNotes,
     deleteStudent,
-    deleteClass,
-    deleteNotes,
     authenticateTeacher,
     getTeacherByEmail,
     removeStudentClass,
